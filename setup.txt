@@ -1,0 +1,6 @@
+in static\paul\c:
+	update a.css
+in static\paul\i
+	update bs.h3.png
+in db
+	replace/add all folders except "record"

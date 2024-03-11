@@ -1,0 +1,311 @@
+[
+	"secondary sources",
+	[
+		["Event & Person",
+			"This category contains facets classifying EMLoT's events and people.",
+			[
+				["Event Type",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT et.name, doc.id, doc.title",
+						"FROM ltbapp_eventtype AS et, ltbapp_document AS doc, ltbapp_event AS ev, ltbapp_event_event_type AS iseet, ltbapp_record AS rec",
+						"WHERE et.id = iseet.eventtype_id AND ev.id = iseet.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY et.name, doc.title"
+					],
+					"h": "Contains a list that includes types of performance activity and primary sources and other subjects of relevance for London's theatrical world (for example, Arrest)."
+				}],
+				["Event Date",{
+					"t": "n",
+					"q": [
+						"SELECT DISTINCT ev.devent_from_year, doc.id, doc.title",
+						"FROM ltbapp_event AS ev, ltbapp_document AS doc, ltbapp_record AS rec",
+						"WHERE ev.id = rec.event_id AND rec.source_id = doc.id",
+						"AND ev.devent_from_year Is Not Null AND doc.document_metatype_id=3",
+						"ORDER BY ev.devent_from_year, doc.title"
+					],
+					"h": "Contains a list of years when events recorded in EMLoT happened."
+				}],
+				["Person Surname",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT pe.surname, doc.id, doc.title",
+						"FROM ltbapp_record AS rec, ltbapp_document AS doc, ltbapp_person AS pe, ltbapp_ass_event_people AS isep, ltbapp_event AS ev",
+						"WHERE pe.id = isep.person_id AND ev.id = isep.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY pe.surname, doc.title"
+					],
+					"h": "Contains an alphabetical list of surnames of pre-1642 and post-1642 people in EMLoT."
+				}],
+				["Person Event Role",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT rl.name, doc.id, doc.title",
+						"FROM ltbapp_ass_event_people AS isep, ltbapp_document AS doc, ltbapp_record AS rec, ltbapp_event AS ev, ltbapp_ass_event_people_role AS isepr, ltbapp_role AS rl",
+						"WHERE isep.id = isepr.ass_event_people_id AND rl.id = isepr.role_id AND ev.id = isep.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY rl.name, doc.title"
+					],
+					"h": "Contains a list of roles of people involved in the production of primary sources and in the historical activities described in these sources."
+				}],
+				["Person Date",{
+					"t": "n",
+					"q": [
+						"SELECT DISTINCT pe.from_year, doc.id, doc.title",
+						"FROM ltbapp_ass_event_people AS isep, ltbapp_event AS ev, ltbapp_record AS rec, ltbapp_person AS pe, ltbapp_document AS doc",
+						"WHERE pe.id = isep.person_id AND ev.id = isep.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND pe.from_year Is Not Null AND doc.document_metatype_id=3",
+						"ORDER BY pe.from_year, doc.title"
+					],
+					"h": ""
+				}
+				]
+			]
+		],
+		["Troupe & Venue",
+			"This category contains facets classifying EMLoT's troupes and venues.",
+			[
+				["Troupe Name",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT tr.name, doc.id, doc.title",
+						"FROM ltbapp_troupe AS tr, ltbapp_record AS rec, ltbapp_event AS ev, ltbapp_document AS doc, ltbapp_ass_event_troupes AS iset",
+						"WHERE tr.id = iset.troupe_id AND ev.id = iset.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY tr.name, doc.title"
+					],
+					"h": "Contains an alphabetical list of troupes."
+				}],
+				["Troupe Type",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT tt.name, doc.id, doc.title",
+						"FROM ltbapp_document AS doc, ltbapp_troupe_typeoftroupe AS istt, ltbapp_ass_event_troupes AS iset, ltbapp_event AS ev, ltbapp_troupetype AS tt, ltbapp_record AS rec",
+						"WHERE tt.id = istt.troupetype_id AND istt.troupe_id = iset.troupe_id AND ev.id = iset.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY tt.name, doc.title"
+					],
+					"h": "Contains a list of troupe types."
+				}],
+				["Troupe Country of Origin",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT pn.name, doc.id, doc.title",
+						"FROM ltbapp_event AS ev, ltbapp_ass_event_troupes AS iset, ltbapp_document AS doc, ltbapp_record AS rec, ltbapp_troupe AS tr, ltbapp_placename AS pn",
+						"WHERE pn.id = tr.country_of_origin_id AND tr.id = iset.troupe_id AND ev.id = iset.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY pn.name, doc.title"
+					],
+					"h": "Contains a list of the countries of origin of troupes."
+				}],
+				["Troupe Date",{
+					"t": "n",
+					"q": [
+						"SELECT DISTINCT tr.acdates_from_year, doc.id, doc.title",
+						"FROM ltbapp_record AS rec, ltbapp_event AS ev, ltbapp_document AS doc, ltbapp_troupe AS tr, ltbapp_ass_event_troupes AS iset",
+						"WHERE tr.id = iset.troupe_id AND ev.id = iset.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY tr.acdates_from_year, doc.title"
+					],
+					"h": ""
+				}],
+				["Venue Name",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT ve.name, doc.id, doc.title",
+						"FROM ltbapp_record AS rec, ltbapp_ass_event_venues AS isev, ltbapp_document AS doc, ltbapp_venue AS ve, ltbapp_event AS ev",
+						"WHERE ve.id = isev.venue_id AND ev.id = isev.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY ve.name, doc.title"
+					],
+					"h": "Contains an alphabetical list of performance venues."
+				}],
+				["Venue Locale",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT vn.name, doc.id, doc.title",
+						"FROM ltbapp_document AS doc, ltbapp_ass_event_venues AS isev, ltbapp_venuename AS vn, ltbapp_venue_helper_m2mlocales AS m2m, ltbapp_record AS rec, ltbapp_event AS ev",
+						"WHERE m2m.venuename_id = vn.id AND m2m.venue_id = isev.venue_id AND ev.id = isev.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY vn.name, doc.title"
+					],
+					"h": "Contains an alphabetical list of venue locations, ranging in extent from a structure to a county."
+				}],
+				["Venue Date",{
+					"t": "n",
+					"q": [
+						"SELECT DISTINCT ve.opyears_from_year, doc.id, doc.title",
+						"FROM ltbapp_event AS ev, ltbapp_ass_event_venues AS isev, ltbapp_record AS rec, ltbapp_document AS doc, ltbapp_venue AS ve",
+						"WHERE ve.id = isev.venue_id AND ev.id = isev.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY ve.opyears_from_year, doc.title"
+					],
+					"h": ""
+				}]
+			]
+		],
+		["Citation",
+			"This category contains facets classifying EMLoT's secondary (post-1642) sources.",
+			[
+				["Citation Type",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT ct.name, doc.id, doc.title, doc.document_metatype_id",
+						"FROM ltbapp_document AS doc, ltbapp_citationtype AS ct",
+						"WHERE ct.id = doc.citationtype_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY ct.name, doc.title"
+					],
+					"h": "Contains a list of types of secondary sources, from manuscripts to books."
+				}],
+				["Primary Author Type",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT at.name, doc.id, doc.title",
+						"FROM ltbapp_authortype AS at, ltbapp_document AS doc, ltbapp_docauthors AS isda",
+						"WHERE at.id = isda.auth_type_id AND doc.id = isda.document_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY at.name, doc.title"
+					],
+					"h": "Contains a list of roles of primary producers of secondary sources."
+				}],
+				["Secondary Author Type",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT at.name, doc.id, doc.title",
+						"FROM ltbapp_docsecauthors AS isdSa, ltbapp_authortype AS at, ltbapp_document AS doc",
+						"WHERE at.id = isdSa.secauth_type_id AND isdSa.document_id = doc.id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY at.name, doc.title"
+					],
+					"h": "Contains a list of roles of secondary producers of secondary sources."
+				}],
+				["Author Name",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT pe.surname, doc.id, doc.title",
+						"FROM ltbapp_document_helper_m2mauthors AS m2ma, ltbapp_document AS doc, ltbapp_person AS pe",
+						"WHERE pe.id = m2ma.person_id AND m2ma.document_id = doc.id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY pe.surname, doc.title"
+					],
+					"h": "Contains an alphabetical list of published primary and secondary source author surnames."
+				}],
+				["Publisher",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT pub.name, doc.id, doc.title",
+						"FROM ltbapp_document AS doc, ltbapp_docpublisher AS isdp, ltbapp_publisher AS pub",
+						"WHERE pub.id = isdp.publisher_id AND doc.id = isdp.document_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY pub.name, doc.title"
+					],
+					"h": "Contains an alphabetical list of publishers of primary and secondary sources."
+				}],
+				["Place of Publication",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT pn.name, doc.id, doc.title",
+						"FROM ltbapp_document AS doc, ltbapp_placename AS pn, ltbapp_docpublisher AS isdp",
+						"WHERE pn.id = isdp.placeof_pub_id AND doc.id = isdp.document_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY pn.name, doc.title"
+					],
+					"h": "Contains an alphabetical list of the places of publication of primary and secondary sources."
+				}],
+				["Repositories",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT rep.name, doc.id, doc.title",
+						"FROM ltbapp_document AS doc, ltbapp_repository AS rep, ltbapp_docrepository AS isdr",
+						"WHERE rep.id = isdr.repository_id AND doc.id = isdr.document_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY rep.name, doc.title"
+					],
+					"h": "Contains an alphabetical list of repositories in which primary sources and secondary sources consulted by EMLoT's editorial team are held."
+				}]
+			]
+		],
+		["Document: Description",
+			"This category contains facets classifying EMLoT's primary (pre-1642) sources.",
+			[
+				["Document Type",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT dt.name, doc.id, doc.title",
+						"FROM ltbapp_documenttype AS dt, ltbapp_document_doc_type AS isddt, ltbapp_document AS doc",
+						"WHERE dt.id = isddt.documenttype_id AND isddt.document_id = doc.id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY dt.name, doc.title"
+					],
+					"h": "Contains list of types of primary and secondary sources, for example: Accounts, Monographs, Plays."
+				}],
+				["Document Class",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT dn.name, doc.id, doc.title",
+						"FROM ltbapp_document_doc_class AS isddc, ltbapp_document AS doc, ltbapp_documentnature AS dn",
+						"WHERE dn.id = isddc.documentnature_id AND isddc.document_id = doc.id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY dn.name, doc.title"
+					],
+					"h": "Contains a list describing the genre or social context of primary and secondary sources, for example: Biographical, Civic, Polemical."
+				}],
+				["Production Auspices",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT aus.name, doc.id, doc.title",
+						"FROM ltbapp_document_prod_auspices AS ispa, ltbapp_auspicesproduction AS aus, ltbapp_document AS doc",
+						"WHERE ispa.auspicesproduction_id = aus.id AND ispa.document_id = doc.id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY aus.name, doc.title"
+					],
+					"h": "Contains a list of those bodies who produced primary and secondary sources, for example: Office of the Revels, Private individual, Single author."
+				}],
+				["Country of Origin",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT pn.name, doc.id, doc.title",
+						"FROM ltbapp_placename AS pn, ltbapp_document AS doc",
+						"WHERE pn.id = doc.country_origin_id",
+						"AND doc.document_metatype_id=3",
+						"ORDER BY pn.name, doc.title"
+					],
+					"h": "Contains a list of countries in which primary and secondary sources were produced."
+				}],
+				["Forgeries",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT CASE WHEN doc.forgery = 0 THEN 'No' WHEN doc.forgery = 1 THEN 'Yes' END AS Forgery, doc_1.id, doc_1.title",
+						"FROM ltbapp_document AS doc, ltbapp_record AS rec, ltbapp_document AS doc_1",
+						"WHERE doc.id = rec.transcription_id AND rec.source_id = doc_1.id",
+						"AND doc_1.document_metatype_id=3",
+						"ORDER BY Forgery, doc_1.title"
+					],
+					"h": "Allows filtering of primary sources based on whether they are or are not forgeries."
+				}],
+				["Primary Source Date",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT doc.pubdate_from_year, doc_1.id, doc_1.title, doc_1.document_metatype_id",
+						"FROM ltbapp_record AS rec, ltbapp_document AS doc, ltbapp_record_helper_documents AS isrd, ltbapp_document AS doc_1",
+						"WHERE rec.id = isrd.record_id AND doc.id = isrd.document_id AND rec.source_id = doc_1.id",
+						"AND doc.pubdate_from_year Is Not Null AND doc.document_metatype_id=1 AND doc_1.document_metatype_id=3",
+						"ORDER BY doc.pubdate_from_year, doc_1.title"
+					],
+					"h": "showing all events mentioned in primary sources marked using the selected publication year*"
+				}],
+				["Secondary Source Date",{
+					"t": "s",
+					"q": [
+						"SELECT DISTINCT doc.pubdate_from_year, doc.id, doc.title",
+						"FROM ltbapp_document AS doc",
+						"WHERE doc.pubdate_from_year Is Not Null AND doc.document_metatype_id=3",
+						"ORDER BY doc.pubdate_from_year, doc.title"
+					],
+					"h": ""
+				}]
+			]
+		]
+	]
+]
