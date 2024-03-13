@@ -43,7 +43,7 @@ A few things to note about this:
 
 ## Before running an xxx2json.py script
 Before you can run this script you will probably need to make two changes to it:
-* First,  you need to give information that will allow it to connect to the EMLoT database.  As described on [the front page of this repo](../README.md), you need to create a file containing MySQL credentials that will provide database access and store it somewhere.  Then, set the path and file name to it in variable "`db_credentials`" which can be found near the top of this script.
+* First,  you need to give information that will allow it to connect to the EMLoT database.  As described on [the front page of this repo](./README.md), you need to create a file containing MySQL credentials that will provide database access and store it somewhere.  Then, set the path and file name to it in variable "`db_credentials`" which can be found near the top of this script.
 * Then, you need to specify where the script is to store the JS/JSON file that it will create.  Edit variable "`workdir`" which can be found near the top of this script. Strictly speaking, the variable is misnamed: note the first part of the filename the script is to use ("`ks-`") is coded here too.
 
 Finally, to make the file as small as possible the script generates the JSON contents in the condensed form which is almost unreadable by humans.  To make the script generate a bigger, but more readable file, you can change the outfile.write line near the end of the script to ask the JSON processor to create the output in the more reader-friendly indented form:
