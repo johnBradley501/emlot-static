@@ -1,7 +1,9 @@
 # EMLoT Static Site Creation Tools
-This repo contains the files that have been created to enable a static publication of EMLoT.  Most of the code here supports the creation of the searching/browsing mechanisms which can be found in the static site at /db/browse: the "Keyword Search" and "Browse" (a facetted browsing mechanism) tabs.
+This repo contains the files that have been created to enable a static publication of EMLoT.  Many of the pages that EmLoT generated from its web application could function as static HTML pages.  And, indeed, in the "static page" version of the site, a great majority of the pages, such as those displaying information about persons, events, etc, are represented as relatively simple static web pages (collected from the functioning web app using the application "SiteSucker": https://ricks-apps.com/osx/sitesucker/index.html
 
-The work involved coding in two areas:
+However, these pages, by themselves, enabled no dynamic interaction with a user, meaning that there was no searching or browsing mechanisms what are provided by EMLoT's original web application. As a consequence, it was decided to recreate the searching/browsing mechanisms by the use of Javascript which would operate wholely in the browser.  Most of the code here supports the creation of this browser based searching/browsing mechanism.  These materials can can be found in the static site at /db/browse: the "Keyword Search" and "Browse" (a facetted browsing mechanism) tabs.
+
+The work to build this browser-only search/browsing mechanism involved coding in two areas:
 * First, data had to be extracted from the EMLoT MySQL database and turned into JSON (packaged within JavaScript files). These Python scripts can be found in the "src" folder.
 * Then, Javascript coding had to be incorporated into HTML pages in the EMLoT presentation that could exploit this formulation of data created in the step just mentioned and use the data to support both the keyword search and facetted browse facilities. This Javascript can be found in the "web" folder: most specifically the HTML files in web/db/browser and web/db/keyword-search, and the Javascript code they make use of in web/db/js.
 
