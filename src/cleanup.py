@@ -2,7 +2,7 @@ import re
 import os
 
 
-dirbase = "D:/projects/emLoT/emlot.library.utoronto.ca/emlot.library.utoronto.ca"
+dirbase = "D:/projects/emLoT/emlot.library.utoronto.ca/emlot"
 
 def doCleanup(text):
     rslt = text
@@ -10,6 +10,7 @@ def doCleanup(text):
     rslt = re.sub(r'\s*<ul class="utl">.*?Register.*?\</ul>\s*', r'<ul class="utl"><li>&nbsp;</li></ul>', rslt, count = 1, flags = re.DOTALL) # removes Register and Login links from right end
     rslt = re.sub(r'\s*<li class="child[ a-z]*?">\s*?<a href="[\./]*workspace.*?Workspace.*?</li>\n?', r'', rslt, count = 1, flags = re.DOTALL) # removes Workspace from top menu
     rslt = re.sub(r'\s*<li class="child[ a-z]*?">\s*?<a href="[\./]*learning.*?Learning Zone.*?</li>\n?', r'', rslt, count = 1, flags = re.DOTALL) # removes Learning Zone from top menu
+    rslt = re.sub(r'\s*<li class="child[ a-z]*?">\s*?<a href="[\./]*trackabear.*?How to Track.*?</li>\n?', r'', rslt, count = 1, flags = re.DOTALL) # removes Bear Tracking from 2nd menu
     rslt = re.sub(r'\s*<li class="child s[a-z]+">\s*?<a href="[\./]*index.*?Record</a>.*?</li>\n?', r'', rslt, count = 1, flags = re.DOTALL) # removes Record from 2nd menu
     return rslt
 
@@ -30,3 +31,5 @@ for (cur, dirs, files) in os.walk(dirbase, topdown=True):
     print("Cur: ",cur)
     for fn in files:
         doFile(cur+"/"+fn)
+#doFile(dirbase+"/db/record/troupe/2/index.html")
+print("Done!")
