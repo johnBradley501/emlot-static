@@ -36,7 +36,7 @@ Following the \<script tags that load the data and js files is a block of embedd
 		return rslt;
 	});
 ```
-* First, is the call to the `facetSetup` function (defined in `browse.js`. The parameters are, first, the name of the type of item being searched here (used for various display purposes), followed by a call to `getEventData()`.  This function is defined in `ks-events.js`, and holds the JSON data about the items this page works with (here, events).  The 3rd parameter is the number of columns in the display of items that `listdispl.js` will be creating. This could have been calculated, but I was too lazy to do that.
+* First, is the call to the `facetSetup` function (defined in `browse.js`). The parameters are, first, the name of the type of item being searched here (used for various display purposes), followed by a call to `getEventData()`.  This function is defined in `ks-events.js`, and holds the JSON data about the items this page works with (here, events).  The 3rd parameter is the number of columns in the display of items that `listdispl.js` will be creating. This could have been calculated, but I was too lazy to do that.
 * Following setup is a call to `setItemRelativeURL()` (defined in `listdispl.js`) that specifiess what the relative URL should start with to generate a link to information about items (here event items).
 * Finally, `defineRowFunction()` (defined in `listdispl.js`) is called with a function that `listdispl.js` will use to generate a tabular row for each item (here event item) that it displays. Note the use of `displayList()` (provided by `listdispl.js` which can turn a list of IDs (first parameter) into a list of HTML "A" links.
 
