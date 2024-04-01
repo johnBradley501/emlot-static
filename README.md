@@ -3,4 +3,4 @@ This repo contains the files that have been created to enable a dynamic searchin
 
 However, these generated pages, by themselves, enabled no dynamic interaction with a user, meaning that there was in the basic static version no searching or browsing mechanisms that the server-driven EMLoT application had provided. As a consequence, it was decided to recreate the searching/browsing mechanisms by the use of Javascript which would operate wholely in the browser.  Most of the code here supports the creation of this browser based searching/browsing mechanism.  These materials can be found in the static site at `/db/browse`: the "Keyword Search" and "Browse" (a facetted browsing mechanism) tabs.
 
-For more information see [here](overview.md).
+For more information see [here](doc/overview.md).
