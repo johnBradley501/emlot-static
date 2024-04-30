@@ -12,7 +12,7 @@ def getConnection(itm):
     cdata = cred[itm]
     return MySQLdb.connect(cdata["host"], cdata["user"], cdata["password"], cdata["db"])
 
-workdir = "D:/data/workspace/emlot-export/data/"
+workdir = "D:/data/workspace/emlot-static/data/"
 outfileName = workdir+"ptvdata.js"
 
 def fetchPersonNames(cursor):

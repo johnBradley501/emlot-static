@@ -16,7 +16,7 @@ def getConnection(itm):
     cdata = cred[itm]
     return MySQLdb.connect(cdata["host"], cdata["user"], cdata["password"], cdata["db"])
 
-workdir = "D:/data/workspace/emlot-export/data/ks-"
+workdir = "D:/data/workspace/emlot-static/data/ks-"
 filenameBase = "events"
 outputFilename = workdir+filenameBase+".js"
 

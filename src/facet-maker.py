@@ -5,7 +5,7 @@ import re
 
 db_credentials = "c:/usr/local/etc/mysql/connection.json"
 pretty = False
-making="venue"
+making="all"
 
 facets = ["event", "people", "prisources", "records", "secsources", "troupe", "venue"]
 
@@ -16,8 +16,8 @@ def getConnection(itm):
     cdata = cred[itm]
     return MySQLdb.connect(cdata["host"], cdata["user"], cdata["password"], cdata["db"])
 
-inputdir = "D:/data/workspace/emlot-export/input/"
-outputdir = "D:/data/workspace/emlot-export/data/"
+inputdir = "D:/data/workspace/emlot-static/input/"
+outputdir = "D:/data/workspace/emlot-static/data/"
 
 dbConnection = getConnection("emlot")
 cursor = dbConnection.cursor()
