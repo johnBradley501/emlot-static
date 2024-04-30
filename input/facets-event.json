@@ -36,7 +36,7 @@
 					"t": "s",
 					"q": [
 						"SELECT DISTINCT ro.name, ev.id, CASE WHEN ev.devent_from_year is null THEN ev.devent_to_year ELSE ev.devent_from_year END AS Year, ev.short_title",
-						"FROM ltbapp_role as ro, ltbapp_event as ev, ltbapp_ass_event_people as ep, ltbapp_ass_event_people_role as per",
+						"FROM ltbapp_role as ro, ltbapp_event as ev, ltbapp_ass_event_people as ep, ltbapp_ass_event_people_documentrole as per",
 						"WHERE ev.id = ep.event_id AND ep.id = per.ass_event_people_id AND ro.id = per.role_id",
 						"ORDER BY ro.name, Year, ev.short_title"
 					],

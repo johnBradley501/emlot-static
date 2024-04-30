@@ -41,7 +41,7 @@
 					"t": "s",
 					"q": [
 						"SELECT DISTINCT rl.name, doc.id, doc.title",
-						"FROM ltbapp_ass_event_people AS isep, ltbapp_document AS doc, ltbapp_record AS rec, ltbapp_event AS ev, ltbapp_ass_event_people_role AS isepr, ltbapp_role AS rl",
+						"FROM ltbapp_ass_event_people AS isep, ltbapp_document AS doc, ltbapp_record AS rec, ltbapp_event AS ev, ltbapp_ass_event_people_documentrole AS isepr, ltbapp_role AS rl",
 						"WHERE isep.id = isepr.ass_event_people_id AND rl.id = isepr.role_id AND ev.id = isep.event_id AND ev.id = rec.event_id AND doc.id = rec.source_id",
 						"AND doc.document_metatype_id=3",
 						"ORDER BY rl.name, doc.title"

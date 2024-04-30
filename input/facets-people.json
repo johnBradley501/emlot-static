@@ -37,7 +37,7 @@
 					"t": "s",
 					"q": [
 						"SELECT DISTINCT rl.name, pe.id, pe.surname, pe.name",
-						"FROM ltbapp_person AS pe, ltbapp_ass_event_people_role AS isepr, ltbapp_role AS rl, ltbapp_ass_event_people AS isep",
+						"FROM ltbapp_person AS pe, ltbapp_ass_event_people_documentrole AS isepr, ltbapp_role AS rl, ltbapp_ass_event_people AS isep",
 						"WHERE rl.id = isepr.role_id AND isep.id = isepr.ass_event_people_id AND pe.id = isep.person_id",
 						"ORDER BY rl.name, pe.surname, pe.name"
 					],
