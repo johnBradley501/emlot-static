@@ -1,6 +1,11 @@
-in static\paul\c:
-	update a.css
-in static\paul\i
-	update bs.h3.png
-in db
-	replace/add all folders except "record"
+in static/paul/c in the material created by sitesucker:
+	update a.css from this project's "web/static/paul/c" folder
+in static/paul/i
+	update bs.h3.png from this project's "web/static/paul/i" folder
+in static/paul/s:
+	udate c_search.js from this project's "web/static/paul/s" folder
+in the db folder created by sitesucker:
+	delete all folders except "record"
+	if the python scripts in this project's src folder have been run the project's folder "data" will contain the pieces of data
+	copy all the folders from the project's web/db folder into the emlot pages "db" folder
+	copy all the contents of the project's data folder into a folder (also called data) in the emlot pages "db" folder
